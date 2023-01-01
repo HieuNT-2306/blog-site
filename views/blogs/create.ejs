@@ -1,0 +1,21 @@
+<%- include('../partials/header.ejs') %> 
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="create-blog content">
+        <form action="/blogs" method="POST">
+            <label for="title">Blog title: </label>
+            <input type="text" id="title" name="title" required>
+            <label for="snippet">Blog snippet:</label>
+            <input type="text" id="snippet" name="snippet" required>
+            <label for="mainblog">Blog:</label>
+            <textarea id="mainblog" required name="body"></textarea>
+            <label for="blogImage" class="custom-file-upload">Blog image:
+                <input type="file" id="blogImage" accept="*">
+            </label>
+            <button>submit</button>
+        </form>
+    </div>
+    <%- include("../partials/footer.ejs") %>
+</body>
+</html>

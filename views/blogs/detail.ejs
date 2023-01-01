@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title><%= blog.title %> | <%= title %></title>
+</head>
+
+<body>
+  <%- include("../partials/nav.ejs") %>
+
+  <div class="details content">
+    <h2><%= blog.title %></h2>
+    <div class="content">
+      <p><%= blog.body %></p>
+    </div>
+    <a class="delete" data-doc="<%= blog._id %> ">DELETE</a>
+  </div>
+  <script>
+    //select delete button
+    const deleteButton = document.querySelector("a.delete");
+    //send delete request
+    deleteButton.addEventListener('click', (event) => {
+      //set up the url
+      const endpoint = `/blogs/${deleteButton.dataset.doc}`
+      //send request
+      fetch(endpoint, {
+        method: "DELETE"
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err))
+    })
+  </script>
+<%- include("../partials/footer.ejs") %>
+</body>
